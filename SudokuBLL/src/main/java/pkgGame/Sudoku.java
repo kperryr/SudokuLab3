@@ -64,20 +64,6 @@ public class Sudoku extends LatinSquare{
 		return areg;	
 	}
 
-	@Override
-	public boolean hasDuplicates()
-	{
-		if (super.hasDuplicates())
-			return true;
-		
-		for (int i = 0; i < this.getPuzzle().length; i++) {
-			if (super.hasDuplicates(getRegion(i))) {
-				return true;
-			}
-		}
-	
-		return false;
-	}
 	
 	
 	protected boolean isPartialSudoku() {

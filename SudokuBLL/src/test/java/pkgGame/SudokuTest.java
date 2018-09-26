@@ -42,7 +42,7 @@ public class SudokuTest {
 		int[][] puzzle= {{1, 4, 3, 2}, {3, 2, 1, 4,}, {4, 1, 2, 3}, {2, 3, 4, 1}};
 		try {
 			Sudoku sp = new Sudoku(puzzle);
-			assertTrue(sp.isPartialSudoku());
+			assertFalse(sp.isPartialSudoku());
 
 		} catch (Exception e) {
 			fail("test failed");

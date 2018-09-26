@@ -84,6 +84,33 @@ public class LatinSquare {
 		}
 		return hasDuplicates;
 	}
+	
+	
+	protected boolean hasDuplicates() 
+
+	{
+
+		for (int i = 0; i < LatinSquare.length; i++) {
+
+			if (hasDuplicates(getRow(i))) 
+
+				return true;
+
+			}
+
+		for (int k  = 0; k < LatinSquare.length; k++) {
+
+			if (hasDuplicates(getColumn(k))) 
+
+				return true;
+
+			}
+
+		return false;
+
+			
+
+		}
 
 	/**
 	 * doesElementExist - pass in one-dimension array and a value, if value exists
