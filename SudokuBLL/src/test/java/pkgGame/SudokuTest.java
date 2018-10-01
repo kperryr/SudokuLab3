@@ -48,4 +48,41 @@ public class SudokuTest {
 			fail("test failed");
 		}
 	}
+	
+
+	@Test
+
+	public void Shufflearraytest() {
+
+		int[] ar =  new int[] {1,2,3,4,5, 6, 7, 8, 9};
+
+		int[] ar2 = new int[] {1,2,3,4,5,6,7,8,9};
+
+		Sudoku.shuffleArray(ar);
+
+		System.out.print(Arrays.toString(ar));
+
+}
+
+
+
+
+	@Test
+	public void PrintPuzzle_Test() throws Exception {
+		int[][] puzzle= {{1, 4, 3, 2}, {3, 2, 1, 4,}, {4, 1, 2, 3}, {2, 3, 4, 1}};
+		
+		Sudoku sp;
+			sp = new Sudoku(puzzle);
+			sp.PrintPuzzle();
+	}
+	
+	@Test
+	public void FillDiagonalRegion() throws Exception {
+		//Test for setRegion,shuffleRegion,getRegionNbr,shuffleArray additionally
+		int[][] puzzle= {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+		Sudoku sp= new Sudoku(puzzle);
+		sp.FillDiagonalRegion();
+		sp.PrintPuzzle();
+	}
+	
 }

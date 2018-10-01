@@ -1,5 +1,8 @@
 package pkgGame;
 
+import java.security.SecureRandom;
+
+
 import pkgHelper.LatinSquare;
 
 public class Sudoku extends LatinSquare{
@@ -88,18 +91,15 @@ public class Sudoku extends LatinSquare{
 		if (super.isLatinSquare() == false) {
 			validSudoku = false;
 		}
-		
 		for (int i = 1; i <= x; i++) {
 			if (hasAllValues(getRow(0), getRegion(i)) == false) {
 				validSudoku = false;
 			}
 		}
-		
 		if (ContainsZero() == true) {
 			validSudoku = false;
 		}
 		return validSudoku;
-	
 	}
 	
 	protected boolean isValidValue(int iCol, int iRow, int iValue) {
@@ -112,6 +112,71 @@ public class Sudoku extends LatinSquare{
 		} else {
 			return false;}
 	}
+
+	public void FillDiagonalRegion() {
+		this.iSize=this.getPuzzle().length;
+		for (int i=0;i<iSize;i+=iSqrtSize) {
+			getRegionNbr(i,i);
+			setRegion(getRegionNbr(i,i));
+			shuffleRegion(getRegionNbr(i,i));
+		}
+	}
+	public void PrintPuzzle() {
+		this.iSize=this.getPuzzle().length;
+		for (int i=0; i<iSize; i++) {
+			System.out.print(" \n");
+			for(int j=0; j<iSize; j++) {
+				System.out.print(" ");
+				int[][] puzz = this.getPuzzle();
+				System.out.print(puzz[i][j]);
+			}
+					
+			}
+		}
+	public static void shuffleArray(int[] ar) {
+		SecureRandom rnum = new SecureRandom();  // Random number generator			
+
+		for (int k=0; k <= ar.length -1; k++) {
+		    int rP = rnum.nextInt(ar.length);
+		    int temporary = ar[k];
+		    ar[k] = ar[rP];
+		    ar[rP] = temporary;
+		}
+	}
+
+	public void shuffleRegion(int numReg) {
+
+		int [] region = getRegion(numReg);
+		shuffleArray(region);
+		int[][] puzz= getPuzzle();
+
+		int num=0;
+		for (int i=(numReg/iSqrtSize)*iSqrtSize;i<((numReg/iSqrtSize)*iSqrtSize)+iSqrtSize;i++) {
+			for (int j=(numReg%iSqrtSize)*iSqrtSize;j<((numReg%iSqrtSize)*iSqrtSize)+iSqrtSize;j++) {
+				puzz[i][j] = region[num];
+				num++;
+			}
+
+		}
+	}
+
+	public void setRegion(int numReg){
+		int inum=1;
+		int[][] puzz = getPuzzle();
+		for (int i=(numReg/iSqrtSize)*iSqrtSize;i<((numReg/iSqrtSize)*iSqrtSize)+iSqrtSize;i++) {
+			for (int j=(numReg%iSqrtSize)*iSqrtSize;j<((numReg%iSqrtSize)*iSqrtSize)+iSqrtSize;j++) {
+				puzz[i][j]=inum++;
+			}	
+	}
+	}
+
+
+	public int getRegionNbr(int iCol, int iRow){
+		int i = (iCol/iSqrtSize) + ((iRow/iSqrtSize)*iSqrtSize);
+		return i;
+	}
+	
+	
 }
 
 	
