@@ -42,31 +42,13 @@ public class SudokuTest {
 		int[][] puzzle= {{1, 4, 3, 2}, {3, 2, 1, 4,}, {4, 1, 2, 3}, {2, 3, 4, 1}};
 		try {
 			Sudoku sp = new Sudoku(puzzle);
-			assertFalse(sp.isPartialSudoku());
+			assertTrue(sp.isPartialSudoku());
 
 		} catch (Exception e) {
 			fail("test failed");
 		}
 	}
 	
-
-	@Test
-
-	public void Shufflearraytest() {
-
-		int[] ar =  new int[] {1,2,3,4,5, 6, 7, 8, 9};
-
-		int[] ar2 = new int[] {1,2,3,4,5,6,7,8,9};
-
-		Sudoku.shuffleArray(ar);
-
-		System.out.print(Arrays.toString(ar));
-
-}
-
-
-
-
 	@Test
 	public void PrintPuzzle_Test() throws Exception {
 		int[][] puzzle= {{1, 4, 3, 2}, {3, 2, 1, 4,}, {4, 1, 2, 3}, {2, 3, 4, 1}};
@@ -81,8 +63,45 @@ public class SudokuTest {
 		//Test for setRegion,shuffleRegion,getRegionNbr,shuffleArray additionally
 		int[][] puzzle= {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
 		Sudoku sp= new Sudoku(puzzle);
-		sp.FillDiagonalRegion();
+		sp.FillDiagonalRegions();
 		sp.PrintPuzzle();
 	}
+	@Test
+	public void fullSudokuPuzzle_1()
+	{
+		try {
+			Sudoku s1=new Sudoku(9);
+			s1.PrintPuzzle();
+			assertTrue(s1.isSudoku());
+		}catch(Exception e) {
+			fail("Failed to build puzzle");
+		}
+		
+	}
 	
+	@Test
+	public void fullSudokuPuzzle_2()
+	{
+		try {
+			Sudoku s2=new Sudoku(9);
+			s2.PrintPuzzle();
+			assertTrue(s2.isSudoku());
+		}catch(Exception e) {
+			fail("Failed to build puzzle");
+		}
+		
+	}
+	
+	@Test
+	public void fullSudokuPuzzle_3()
+	{
+		try {
+			Sudoku s3=new Sudoku(9);
+			s3.PrintPuzzle();
+			assertTrue(s3.isSudoku());
+		}catch(Exception e) {
+			fail("Failed to build puzzle");
+		}
+		
+	}
 }
